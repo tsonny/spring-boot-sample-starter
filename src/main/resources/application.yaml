@@ -1,0 +1,3 @@
+api:
+  endpoint: "http://worldtimeapi.org/api/timezone/"
+  continent: "Europe/"
