@@ -1,15 +1,17 @@
-package io.type2write.model;
+package io.type2write.data;
 
-public class UserModel {
+import java.io.Serializable;
+
+public class UserEntity implements Serializable {
     private String firstName;
     private String lastName;
     private Integer memberId;
 
     private String creationTime;
 
-    public UserModel(String firstName, String lastName, Integer memberId, String creationTime){
+    public UserEntity(String firstName, String lastName, Integer memberId, String creationTime){
     }
-    public UserModel(String firstName, String lastName, Integer memberId) {
+    public UserEntity(String firstName, String lastName, Integer memberId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.memberId = memberId;
