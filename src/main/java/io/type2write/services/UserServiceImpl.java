@@ -4,11 +4,9 @@ import io.type2write.mappers.EntityMapper;
 import io.type2write.data.UserEntity;
 import io.type2write.data.UserRepository;
 import io.type2write.model.UserModel;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
-@Qualifier("primary")
 public class UserServiceImpl implements UserService {
     private final TimeService timeService;
     private final UserRepository userRepository;
