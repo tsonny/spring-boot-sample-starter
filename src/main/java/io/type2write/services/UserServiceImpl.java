@@ -1,30 +1,38 @@
 package io.type2write.services;
 
-import io.type2write.model.UserModel;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import java.util.HashMap;
-import java.util.Map;
+import io.type2write.data.UserEntity;
+import io.type2write.data.UserRepository;
+import io.type2write.mappers.EntityMapper;
+import io.type2write.model.UserModel;
+
+import javax.transaction.Transactional;
+
 
 @Service
-@Qualifier("primary")
 public class UserServiceImpl implements UserService {
-    private final Map<String, UserModel> userMap = new HashMap<>();
-    private final TimeService timeService;
 
-    public UserServiceImpl(TimeService timeService) {
+    private final TimeService timeService;
+    private final EntityMapper<UserEntity, UserModel> entityMapper;
+    private final UserRepository userRepository;
+
+    public UserServiceImpl(TimeService timeService, EntityMapper<UserEntity, UserModel> entityMapper, UserRepository userRepository) {
         this.timeService = timeService;
-        userMap.put("John", new UserModel("John", "Dow", 1234));
-        userMap.put("Jane", new UserModel("Jane", "Dow", 1334));
+        this.entityMapper = entityMapper;
+        this.userRepository = userRepository;
     }
+
     public UserModel getUser(String userName) {
-        return userMap.get(userName);
+        return entityMapper.map(userRepository.findByFirstName(userName));
     }
+
     public void addUser(UserModel user) {
         user.setCreationTime(timeService.getCurrentTime("Amsterdam"));
-        userMap.put(user.getFirstName(), user);
+        userRepository.save(entityMapper.reverseMap(user));
     }
-    public void deleteUser(String userName) {
-        userMap.remove(userName);
+
+    @Transactional
+    public void deleteUser(String userName){
+        userRepository.deleteByFirstName(userName);
     }
 }
