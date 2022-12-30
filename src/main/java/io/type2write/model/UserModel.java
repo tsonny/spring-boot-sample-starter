@@ -1,18 +1,28 @@
 package io.type2write.model;
 
 public class UserModel {
+
     private String firstName;
     private String lastName;
     private Integer memberId;
 
     private String creationTime;
 
-    public UserModel(String firstName, String lastName, Integer memberId, String creationTime){
+    public UserModel() {
+
     }
-    public UserModel(String firstName, String lastName, Integer memberId) {
+
+    public UserModel(String firstName, String lastName, Integer membershipId) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.memberId = membershipId;
+    }
+
+    public UserModel(String firstName, String lastName, Integer memberId, String creationTime) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.memberId = memberId;
+        this.creationTime = creationTime;
     }
 
     public String getCreationTime() {
@@ -43,8 +53,4 @@ public class UserModel {
         return memberId;
     }
 
-    public void setMemberId(Integer memberId) {
-        this.memberId = memberId;
-    }
 }
-

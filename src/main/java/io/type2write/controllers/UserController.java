@@ -27,4 +27,11 @@ public class UserController {
         service.addUser(user);
         return ResponseEntity.accepted().build();
     }
+
+
+    @DeleteMapping("/deleteUser/{userName}")
+    public ResponseEntity<HttpStatus> createUser(@PathVariable String userName) {
+        service.deleteUser(userName);
+        return ResponseEntity.noContent().build();
+    }
 }
