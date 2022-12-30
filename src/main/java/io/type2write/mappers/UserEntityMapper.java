@@ -1,19 +1,19 @@
 package io.type2write.mappers;
 
+import org.springframework.stereotype.Component;
 import io.type2write.data.UserEntity;
 import io.type2write.model.UserModel;
-import org.springframework.stereotype.Component;
-
 
 @Component
 public class UserEntityMapper implements EntityMapper<UserEntity, UserModel> {
+
     @Override
     public UserModel map(UserEntity entity) {
         return new UserModel(
-            entity.getFirstName(),
-            entity.getLastName(),
-            entity.getMemberId(),
-            entity.getCreationTime()
+                entity.getFirstName(),
+                entity.getLastName(),
+                entity.getMemberId(),
+                entity.getCreationTime()
         );
     }
 

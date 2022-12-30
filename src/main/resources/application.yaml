@@ -1,6 +1,9 @@
 api:
   endpoint: "http://worldtimeapi.org/api/timezone/"
-  continent: "Europe/"
+  continent: "Europe"
+
+server:
+  port: 9019
 
 spring:
   datasource:
